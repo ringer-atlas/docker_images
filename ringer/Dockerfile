@@ -53,4 +53,5 @@ RUN ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
     && rm -rf /var/lib/apt/lists/*
 
 
-
+COPY setup_envs.sh /
+RUN chmod 777 /setup_envs.sh
