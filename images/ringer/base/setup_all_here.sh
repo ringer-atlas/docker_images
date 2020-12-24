@@ -19,7 +19,7 @@ git clone https://github.com/ringer-atlas/gaugi.git
 cd $temp/gaugi && source scripts/setup.sh
 echo "======================================================================================"
 echo "setup prometheus..."
-git clone https://github.com/ringer-atlas/gaugi.git
+git clone https://github.com/ringer-atlas/prometheus.git
 cd $temp/prometheus && mkdir build && cd build && cmake .. && make && cd .. && source setup.sh
 
 echo "======================================================================================"

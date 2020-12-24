@@ -1,4 +1,4 @@
-FROM ringeratlas/cern-root
+FROM jodafons/cern-root
 
 LABEL maintainer "Joao Victor da Fonseca Pinto <jodafons@lps.ufrj.br>"
 
