@@ -15,33 +15,33 @@ mkdir git_repos
 cd git_repos
 temp=$PWD
 
-git clone https://github.com/ringer-atlas/gaugi.git
+cd $temp && git clone https://github.com/ringer-atlas/gaugi.git
 cd $temp/gaugi && source scripts/setup.sh
 echo "======================================================================================"
 echo "setup prometheus..."
-git clone https://github.com/ringer-atlas/prometheus.git
+cd $temp && git clone https://github.com/ringer-atlas/prometheus.git
 cd $temp/prometheus && mkdir build && cd build && cmake .. && make && cd .. && source setup.sh
 
 echo "======================================================================================"
 echo "setup kolmov..."
-git clone https://github.com/ringer-atlas/kolmov.git
+cd $temp && git clone https://github.com/ringer-atlas/kolmov.git
 cd $temp/kolmov && source scripts/setup.sh
 
 echo "======================================================================================"
 echo "setup saphyra..."
-git clone https://github.com/ringer-atlas/saphyra.git
+cd $temp && git clone https://github.com/ringer-atlas/saphyra.git
 cd $temp/saphyra && source scripts/setup.sh
 
 
 echo "======================================================================================"
 echo "setup orchestra..."
-git clone https://github.com/ringer-atlas/orchestra.git
+cd $temp && git clone https://github.com/ringer-atlas/orchestra.git
 cd $temp/orchestra && source scripts/setup.sh
 
 
 echo "======================================================================================"
 echo "setup tunings..."
-git clone https://github.com/ringer-atlas/ringer_tunings.git
+cd $temp && git clone https://github.com/ringer-atlas/ringer_tunings.git
 cd $temp/ringer_tunings && source setup.sh
 
 echo "======================================================================================"
