@@ -1,4 +1,4 @@
-FROM ringeratlas/root_cern
+FROM ringeratlas/cern-root
 
 LABEL maintainer "Joao Victor da Fonseca Pinto <jodafons@lps.ufrj.br>"
 
@@ -17,6 +17,8 @@ RUN apt-get install -y git vim
 RUN pip install future \
                 numpy \
                 onnxruntime \
+                onnx \
+                keras2onnx \
 				pandas \
 				gaugi \
                 sklearn \
@@ -53,5 +55,7 @@ RUN ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
     && rm -rf /var/lib/apt/lists/*
 
 
-COPY setup_envs.sh /
-RUN chmod 777 /setup_envs.sh
+COPY setup_root.sh /
+COPY setup_all_here.sh /
+RUN chmod 777 /setup_root.sh
+RUN chmod 777 /setup_all_here.sh

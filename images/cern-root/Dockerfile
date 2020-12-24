@@ -66,5 +66,5 @@ RUN cd /opt && rm -rf root && mkdir root && cd root && mv ../buildthis .
 RUN ln -sf /usr/bin/pip3 /usr/bin/pip
 
 
-COPY setup_envs.sh /
-RUN chmod 777 /setup_envs.sh
+COPY setup_root.sh /
+RUN chmod 777 /setup_root.sh
