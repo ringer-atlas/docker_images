@@ -19,11 +19,11 @@ RUN pip install future \
                 onnxruntime \
                 onnx \
                 keras2onnx \
-				pandas \
-				gaugi \
+		pandas \
+		gaugi \
                 sklearn \
-				seaborn \
-				jupyterlab \
+		seaborn \
+		jupyterlab \
                 Flask_Security \
                 passlib \
                 PTable \
@@ -51,9 +51,8 @@ RUN ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
     && echo "Etc/UTC" > /etc/timezone \
     && apt-get update \
     && apt-get upgrade -y \
-    && apt-get install texlive-latex-base texlive-latex-extra texlive-fonts-recommended xzdec -y \
+    && apt-get install texlive-latex-base texlive-latex-extra texlive-science texlive-fonts-recommended xzdec -y \
     && rm -rf /var/lib/apt/lists/*
-
 
 COPY setup_root.sh /
 COPY setup_all_here.sh /
