@@ -11,14 +11,19 @@ USER root
 SHELL [ "/bin/bash", "-c" ]
 
 
+RUN ls
 RUN apt-get update --fix-missing
 RUN apt-get install -y python3.7 python3-pip
+RUN apt-get install fonts-freefont-otf
+
 RUN apt-get install -y git \
                        wget \
                        dpkg-dev \
                        g++ \
                        gcc \
                        binutils \
+                       xlibmesa-glu-dev \
+                       libmysqlclient-dev \
                        libx11-dev \
                        libxpm-dev \
                        libxft-dev \
@@ -49,7 +54,7 @@ RUN cd ${HOME}/.vim_runtime/ && source install_awesome_vimrc.sh
 RUN wget https://cmake.org/files/v3.17/cmake-3.17.2-Linux-x86_64.sh -P /usr/
 RUN chmod 755 /usr/cmake-3.17.2-Linux-x86_64.sh
 RUN cd /usr && ./cmake-3.17.2-Linux-x86_64.sh --skip-license
-RUN ln -sf /usr/bin/python3.6 /usr/bin/python
+RUN ln -sf /usr/bin/python3.7 /usr/bin/python
 
 
 
