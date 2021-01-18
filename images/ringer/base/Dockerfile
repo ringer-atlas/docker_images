@@ -8,22 +8,21 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV TERM screen
 
+RUN ls
 
-RUN apt-get update
+#RUN apt-get update
 RUN apt-get install -y git vim 
 
 
 # Install pip packages
 RUN pip install future \
-                numpy \
                 onnxruntime \
                 onnx \
                 keras2onnx \
-		pandas \
-		gaugi \
+		        pandas \
                 sklearn \
-		seaborn \
-		jupyterlab \
+		        seaborn \
+		        jupyterlab \
                 Flask_Security \
                 passlib \
                 PTable \
@@ -50,7 +49,6 @@ RUN pip install future \
 RUN ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
     && echo "Etc/UTC" > /etc/timezone \
     && apt-get update \
-    && apt-get upgrade -y \
     && apt-get install texlive-latex-base texlive-latex-extra texlive-science texlive-fonts-recommended xzdec -y \
     && rm -rf /var/lib/apt/lists/*
 
