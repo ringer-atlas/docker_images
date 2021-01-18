@@ -39,7 +39,7 @@ cd $temp/saphyra && source scripts/setup.sh
 echo "======================================================================================"
 echo "setup orchestra..."
 cd $temp && git clone https://github.com/$github_username/orchestra.git
-cd $temp/orchestra && source scripts/setup.sh
+cd $temp/orchestra && source setup.sh
 
 
 echo "======================================================================================"
