@@ -2,7 +2,7 @@
 
 This repository is responsible to hold all scripts to build the ringer image.
 
-## How to use ringer base image:
+## How to use ringer base image?
 
 Let's use singularity as core to instantiate the image:
 
@@ -24,7 +24,7 @@ source /setup_all_here.sh ringer-atlas
 ```
 
 
-## How to use ringer Jupyter image:
+## How to use ringer Jupyter image?
 
 This tag has inheritance from ringer base.
 
