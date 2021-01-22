@@ -53,5 +53,5 @@ And inside of login machine:
 ssh -L localhost:8888:localhost:8888 caloba21
 ```
 
-**NOTE** Using caloba cluster and port 8888 as examplo.
+**NOTE** Using caloba cluster and port 8888 as example.
 
