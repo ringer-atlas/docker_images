@@ -43,6 +43,7 @@ RUN pip install future \
                 sqlalchemy_utils \
                 psycopg2-binary \
                 ansi2html \
+                hub \
                 pickle5
 
 
@@ -54,8 +55,8 @@ RUN ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
     && apt-get install texlive-latex-base texlive-latex-extra texlive-science texlive-fonts-recommended xzdec -y \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
-RUN sh ~/.vim_runtime/install_awesome_vimrc.sh
+#RUN git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+#RUN sh ~/.vim_runtime/install_awesome_vimrc.sh
 
 COPY setup_root.sh /
 COPY setup_all_here.sh /
