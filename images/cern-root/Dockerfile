@@ -13,7 +13,7 @@ SHELL [ "/bin/bash", "-c" ]
 
 RUN ls
 RUN apt-get update --fix-missing && \
-    apt-get install -y --no-install-recommends && \
+    apt-get install -y --no-install-recommends \
     python-3.7 \
     python3-pip \
     fonts-freefont-otf \
