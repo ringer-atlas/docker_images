@@ -1,0 +1,63 @@
+name: Docker Images
+
+on:
+  push:
+    branches:
+      - "master"
+    tags:
+      - "*"
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint cern-root Dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run hadolint
+        uses: reviewdog/action-hadolint@v1
+        with:
+          hadolint_ignore: DL3002 DL3007 DL3008 DL3013 SC1091 SC2086
+  cern_root:
+    needs: lint
+    name: Build and push cern-root
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build cern-root container
+        run: |
+          cd images/cern-root/. && |
+          docker build --file Dockerfile --compress --no-cache -t ringeratlas/cern-root:$(date '+%Y-%m-%d') . && |
+          docker build --file Dockerfile --compress -t ringeratlas/cern-root:latest .
+      - name: Login to DockerHub
+        run: |
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Push to DockerHub
+        run: |
+          docker push ringeratlas/cern-root:$(date '+%Y-%m-%d') && docker push ringeratlas/cern-root:latest
+  ringer:
+    needs: lint
+    name: Build and push ringer (both base and jupyter)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build ringer base container
+        run: |
+          cd images/ringer/base/. && |
+          docker build --file Dockerfile --compress --no-cache -t ringeratlas/ringer:base-$(date '+%Y-%m-%d') . && |
+          docker build --file Dockerfile --compress -t ringeratlas/ringer:base .
+      - name: Build ringer jupyter container
+        run: |
+          cd ../jupyter/. && |
+          docker build --file Dockerfile --compress --no-cache -t ringeratlas/ringer:jupyter-$(date '+%Y-%m-%d') . && |
+          docker build --file Dockerfile --compress -t ringeratlas/ringer:jupyter .
+      - name: Login to DockerHub
+        run: |
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Push everything to DockerHub
+        run: |
+          docker push ringeratlas/ringer:base-$(date '+%Y-%m-%d') && docker push ringeratlas/ringer:base && |
+          docker push ringeratlas/ringer:jupyter-$(date '+%Y-%m-%d') && docker push ringeratlas/ringer:jupyter
