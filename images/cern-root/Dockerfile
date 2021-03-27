@@ -52,8 +52,8 @@ RUN apt-get update --fix-missing && \
     rm -rf /var/lib/apt/lists/*
 
 # Vim tuning
-RUN git clone "https://github.com/amix/vimrc.git" "${HOME}/.vim_runtime"
-WORKDIR "${HOME}/.vim_runtime/"
+RUN git clone "https://github.com/amix/vimrc.git" "/root/.vim_runtime"
+WORKDIR "/root/.vim_runtime/"
 RUN source install_awesome_vimrc.sh
 
 # Installing cmake
