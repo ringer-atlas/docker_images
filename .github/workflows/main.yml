@@ -53,7 +53,7 @@ jobs:
           docker build --file Dockerfile --compress -t ringeratlas/ringer:base .
       - name: Build ringer jupyter container
         run: |
-          cd ../jupyter/. && \
+          cd images/ringer/jupyter/. && \
           docker build --file Dockerfile --compress --no-cache -t ringeratlas/ringer:jupyter-$(date '+%Y-%m-%d') . && \
           docker build --file Dockerfile --compress -t ringeratlas/ringer:jupyter .
       - name: Login to DockerHub
