@@ -28,8 +28,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Build cern-root container
         run: |
-          cd images/cern-root/. && |
-          docker build --file Dockerfile --compress --no-cache -t ringeratlas/cern-root:$(date '+%Y-%m-%d') . && |
+          cd images/cern-root/. && \
+          docker build --file Dockerfile --compress --no-cache -t ringeratlas/cern-root:$(date '+%Y-%m-%d') . && \
           docker build --file Dockerfile --compress -t ringeratlas/cern-root:latest .
       - name: Login to DockerHub
         run: |
@@ -38,7 +38,7 @@ jobs:
         run: |
           docker push ringeratlas/cern-root:$(date '+%Y-%m-%d') && docker push ringeratlas/cern-root:latest
   ringer:
-    needs: lint
+    needs: cern_root
     name: Build and push ringer (both base and jupyter)
     runs-on: ubuntu-latest
     steps:
@@ -51,13 +51,13 @@ jobs:
           docker build --file Dockerfile --compress -t ringeratlas/ringer:base .
       - name: Build ringer jupyter container
         run: |
-          cd ../jupyter/. && |
-          docker build --file Dockerfile --compress --no-cache -t ringeratlas/ringer:jupyter-$(date '+%Y-%m-%d') . && |
+          cd ../jupyter/. && \
+          docker build --file Dockerfile --compress --no-cache -t ringeratlas/ringer:jupyter-$(date '+%Y-%m-%d') . && \
           docker build --file Dockerfile --compress -t ringeratlas/ringer:jupyter .
       - name: Login to DockerHub
         run: |
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Push everything to DockerHub
         run: |
-          docker push ringeratlas/ringer:base-$(date '+%Y-%m-%d') && docker push ringeratlas/ringer:base && |
+          docker push ringeratlas/ringer:base-$(date '+%Y-%m-%d') && docker push ringeratlas/ringer:base && \
           docker push ringeratlas/ringer:jupyter-$(date '+%Y-%m-%d') && docker push ringeratlas/ringer:jupyter
