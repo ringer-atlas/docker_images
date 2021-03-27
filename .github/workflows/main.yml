@@ -48,8 +48,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Build ringer base container
         run: |
-          cd images/ringer/base/. && |
-          docker build --file Dockerfile --compress --no-cache -t ringeratlas/ringer:base-$(date '+%Y-%m-%d') . && |
+          cd images/ringer/base/. && \
+          docker build --file Dockerfile --compress --no-cache -t ringeratlas/ringer:base-$(date '+%Y-%m-%d') . && \
           docker build --file Dockerfile --compress -t ringeratlas/ringer:base .
       - name: Build ringer jupyter container
         run: |
