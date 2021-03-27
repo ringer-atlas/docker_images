@@ -14,7 +14,7 @@ SHELL [ "/bin/bash", "-c" ]
 RUN ls
 RUN apt-get update --fix-missing && \
     apt-get install -y --no-install-recommends \
-    python-3.7 \
+    python3 \
     python3-pip \
     fonts-freefont-otf \
     git \
@@ -58,10 +58,10 @@ RUN source install_awesome_vimrc.sh
 
 # Installing cmake
 WORKDIR /usr
-RUN wget --progress=dot:giga https://cmake.org/files/v3.17/cmake-3.19.7-Linux-x86_64.sh -P /usr/
-RUN chmod 755 /usr/cmake-3.17.2-Linux-x86_64.sh
-RUN ./cmake-3.17.2-Linux-x86_64.sh --skip-license
-RUN ln -sf /usr/bin/python3.7 /usr/bin/python
+RUN wget --progress=dot:giga https://cmake.org/files/v3.19/cmake-3.19.7-Linux-x86_64.sh -P /usr/
+RUN chmod 755 /usr/cmake-3.19.7-Linux-x86_64.sh
+RUN ./cmake-3.19.7-Linux-x86_64.sh --skip-license
+RUN ln -sf /usr/bin/python3 /usr/bin/python
 
 # Install ROOT
 WORKDIR /opt
