@@ -24,7 +24,7 @@ RUN \
     git \
     vim && \
     apt-get clean && \
-    rm /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*
 
 # Install pip packages
 RUN pip3 install --no-cache-dir \

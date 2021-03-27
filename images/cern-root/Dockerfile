@@ -49,7 +49,7 @@ RUN apt-get update --fix-missing && \
     librange-v3-dev \
     libboost-python-dev && \
     apt-get clean && \
-    rm /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*
 
 # Vim tuning
 RUN git clone "https://github.com/amix/vimrc.git" "${HOME}/.vim_runtime"
