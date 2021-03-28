@@ -1,4 +1,4 @@
-FROM jodafons/cern-root
+FROM ringeratlas/cern-root:latest
 
 LABEL maintainer "Joao Victor da Fonseca Pinto <jodafons@lps.ufrj.br>"
 
@@ -10,55 +10,57 @@ ENV TERM screen
 
 RUN ls
 
-#RUN apt-get update
-RUN apt-get install -y git vim 
+RUN ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
+    && echo "Etc/UTC" > /etc/timezone
 
+RUN \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+    texlive-latex-base \
+    texlive-latex-extra \
+    texlive-science \
+    texlive-fonts-recommended \
+    xzdec \
+    git \
+    vim && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install pip packages
-RUN pip install future \
-                onnxruntime \
-                onnx \
-                keras2onnx \
-		        pandas \
-                sklearn \
-		        seaborn \
-		        jupyterlab \
-                Flask_Security \
-                passlib \
-                PTable \
-                Flask_Mail \
-                requests \
-                Werkzeug \
-                SQLAlchemy \
-                Jinja2 \
-                Flask \
-                Flask_Login \
-                Flask_SQLAlchemy \
-                BeneDict \
-                flask_admin \
-                flask_bootstrap \
-                flask_cors \
-                flask_restful \
-                prettytable \
-                sqlalchemy_utils \
-                psycopg2-binary \
-                ansi2html \
-                hub \
-                pickle5
+RUN pip3 install --no-cache-dir \
+    future \
+    onnxruntime \
+    onnx \
+    keras2onnx \
+    pandas \
+    sklearn \
+    seaborn \
+    jupyterlab \
+    Flask_Security \
+    passlib \
+    PTable \
+    Flask_Mail \
+    requests \
+    Werkzeug \
+    SQLAlchemy \
+    Jinja2 \
+    Flask \
+    Flask_Login \
+    Flask_SQLAlchemy \
+    BeneDict \
+    flask_admin \
+    flask_bootstrap \
+    flask_cors \
+    flask_restful \
+    prettytable \
+    sqlalchemy_utils \
+    psycopg2-binary \
+    ansi2html \
+    hub \
+    pickle5
 
-
-
-# Install Latex
-RUN ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
-    && echo "Etc/UTC" > /etc/timezone \
-    && apt-get update \
-    && apt-get install texlive-latex-base texlive-latex-extra texlive-science texlive-fonts-recommended xzdec -y \
-    && rm -rf /var/lib/apt/lists/*
-
-#RUN git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
-#RUN sh ~/.vim_runtime/install_awesome_vimrc.sh
-
-COPY setup_root.sh /
-COPY setup_all_here.sh /
+WORKDIR /
+COPY setup_root.sh .
+COPY setup_all_here.sh .
 RUN chmod 777 /setup_root.sh
 RUN chmod 777 /setup_all_here.sh

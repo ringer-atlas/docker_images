@@ -1,4 +1,4 @@
-FROM jodafons/ringer:base
+FROM ringeratlas/ringer:base
 
 LABEL maintainer "Joao Victor da Fonseca Pinto <jodafons@lps.ufrj.br>"
 
