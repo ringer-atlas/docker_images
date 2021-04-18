@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:2.4.1-gpu
+FROM tensorflow/tensorflow:2.3.2-gpu
 
 
 LABEL maintainer "Joao Victor da Fonseca Pinto <jodafons@lps.ufrj.br>"
