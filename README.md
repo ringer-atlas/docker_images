@@ -7,7 +7,7 @@ This repository is responsible to hold all scripts to build the ringer image.
 Let's use singularity as core to instantiate the image:
 
 ```bash
-singularity pull docker://jodafons/ringer:base
+singularity pull docker://ringeratlas/ringer:base
 ```
 
 After donwload it, just execute the `run` command:
@@ -29,7 +29,7 @@ source /setup_all_here.sh ringer-atlas
 This tag has inheritance from ringer base.
 
 ```bash
-singularity pull docker://jodafons/ringer:jupyter
+singularity pull docker://ringeratlas/ringer:jupyter
 ```
 
 After donwload it, just execute the `run` command:
